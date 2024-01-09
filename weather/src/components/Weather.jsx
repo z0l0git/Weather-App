@@ -1,43 +1,30 @@
-import { IoLocationOutline } from "react-icons/io5";
-import { FiHome } from "react-icons/fi";
-import { CiHeart } from "react-icons/ci";
-import { LiaUserNinjaSolid } from "react-icons/lia";
+import { DateLocation } from "@/components/DateLocation";
+import { IconRow } from "@/components/IconRow";
+import { Celcius } from "@/components/Celcius";
 
 import Image from "next/image";
 
-export const Weather = () => {
+export const Weather = (props) => {
+  const { bg = "#F3F4F6", imgSrc = "", check = true } = props;
+  const dStyle = { backgroundColor: `${bg}` };
+  const nStyle = {
+    backgroundColor: `${bg}`,
+    background: `linear-gradient(180deg, #1F2937 0%, rgba(17, 24, 39, 0.00) 100%);
+
+    )`,
+  };
+
   return (
-    <div className="flex flex-col items-center bg-white rounded-[48px] p-[48px] w-[414px]">
-      <div className="flex items-center justify-between w-full">
-        <div>
-          <p className="text-sm text-gray-500">January 9 2023</p>
-          <h1 className="text-3xl font-[800] text-black">Mongolia</h1>
-        </div>
-        <IoLocationOutline className="text-xl text-gray-500" />
+    <div
+      className={`flex flex-col items-center justify-start bg-[${bg}] rounded-[48px] p-[48px] w-[350px]`}
+      style={check ? dStyle : nStyle}
+    >
+      <DateLocation location="Mongolia" Dcheck={check} />
+      <div className="mt-[46px]">
+        <Image src={imgSrc} width={160} height={160}></Image>
       </div>
-      <div>
-        <Image src={"/sun.png"} width={200} height={200}></Image>
-      </div>
-      <div>
-        <p
-          className="text-[144px] font-[800] text-transparent bg-clip-text bg-gradient-to-t from-gray-700 via-gray-900 to-black "
-          style={{
-            background:
-              "linear-gradient(180deg, #111827 0%, #6B7280 100%), linear-gradient(180deg, #111827 0%, #6B7280 100%))",
-          }}
-        >
-          26°
-        </p>
-      </div>
-      <div>
-        <p className="text-[#FF8E27] text-[24px] font-[800]">Bright</p>
-      </div>
-      <div className="flex items-center justify-between w-full">
-        <FiHome></FiHome>
-        <IoLocationOutline></IoLocationOutline>
-        <CiHeart></CiHeart>
-        <LiaUserNinjaSolid></LiaUserNinjaSolid>
-      </div>
+      <Celcius dayCheck={check} />
+      <IconRow checkI={check} />
     </div>
   );
 };

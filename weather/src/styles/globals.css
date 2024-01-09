@@ -1,3 +1,29 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+  background-color: gray;
+}
+
+.Icon:hover {
+  stroke: black;
+  color: black;
+  fill: black;
+  cursor: pointer;
+}
+.IconNight:hover {
+  stroke: white;
+  color: white;
+  fill: white;
+  cursor: pointer;
+}
+.white {
+  color: white;
+}
+.orange {
+  color: #ff8e27;
+}
+.blue {
+  color: #777cce;
+}
