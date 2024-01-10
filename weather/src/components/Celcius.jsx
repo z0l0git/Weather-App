@@ -1,8 +1,9 @@
-export const Celcius = (props) => {
-  const { cUnit, dayState, dayCheck = true } = props;
+import { data } from "autoprefixer";
 
-  const dayStyle =
-    "bg-clip-text bg-gradient-to-t from-gray-700 via-gray-900 to-black";
+export const Celcius = (props) => {
+  const { cUnit = "0", dayState = "Clear", dayCheck = true } = props;
+
+  const dayStyle = "bg-clip-text bg-gradient-to-t from-slate-50 to-slate-900";
 
   const nightStyle = "bg-clip-text bg-gradient-to-t from-slate-900 to-slate-50";
 
@@ -16,8 +17,11 @@ export const Celcius = (props) => {
           className={`text-[100px] font-[800] text-transparent ${
             dayCheck ? dayStyle : nightStyle
           }`}
+          onClick={() => {
+            fetchData();
+          }}
         >
-          26°
+          {cUnit}
         </p>
       </div>
       <div>
@@ -26,7 +30,7 @@ export const Celcius = (props) => {
             dayCheck ? stateD : stateN
           } text-[24px] font-[800]`}
         >
-          Bright
+          {dayState}
         </p>
       </div>
     </div>
