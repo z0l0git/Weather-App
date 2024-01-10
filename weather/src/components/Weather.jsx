@@ -12,7 +12,11 @@ export const Weather = (props) => {
     imgSrc = "",
     check = true,
     location = "Ulaanbaatar",
+    celcius = "",
+    nightcel = "",
+    day = "",
   } = props;
+
   const dStyle = { backgroundColor: `${bg}` };
   const nStyle = {
     backgroundColor: `${bg}`,
@@ -23,35 +27,13 @@ export const Weather = (props) => {
   const dimgBg = "bg-yellow-300";
   const nimgBg = "bg-white";
 
-  const [temp, setTemp] = useState(0);
-  const [mainDay, setMainDay] = useState("");
-
-  const fetchData = async () => {
-    const hour = new Date().getHours();
-    const api_key = "7c91776fb1267161889e298c3e7ceb4b";
-    const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&lang=en&units=Metric&appid=${api_key}`;
-    const response = await fetch(url);
-    const data = await response.json();
-    const mainDay = data.weather[0].main;
-    const dtemp = data.main.temp_max;
-    const ntemp = data.main.temp_min;
-
-    setTemp(check ? dtemp : ntemp);
-    setMainDay(mainDay);
-  };
-
   return (
     <div
-      className={`flex flex-col items-center justify-start bg-[${bg}] rounded-[48px] p-[48px] w-fit`}
+      className={`flex flex-col items-center justify-start bg-[${bg}] rounded-[48px] p-[48px] w-[300px]`}
       style={check ? dStyle : nStyle}
     >
-      <DateLocation location="Mongolia" Dcheck={check} />
-      <div
-        className="mt-[46px] w-[200px] h-[200px] rounded-full flex items-center justify-center"
-        onClick={() => {
-          fetchData();
-        }}
-      >
+      <DateLocation location={location.split(",")[0]} Dcheck={check} />
+      <div className="mt-[46px] w-[200px] h-[200px] rounded-full flex items-center justify-center">
         <div
           className={`absolute z-0 w-[160px] h-[160px] rounded-full ${
             check ? dimgBg : nimgBg
@@ -66,7 +48,11 @@ export const Weather = (props) => {
           alt="weather icon"
         ></Image>
       </div>
-      <Celcius dayCheck={check} cUnit={temp} dayState={mainDay} />
+      <Celcius
+        dayCheck={check}
+        cUnit={check ? celcius : nightcel}
+        dayState={day}
+      />
       <IconRow checkI={check} />
     </div>
   );

@@ -33,11 +33,11 @@ export const SearchBar = () => {
   }, [input]);
 
   const handleClick = (name) => {
+    setSearch(!search);
     setLocation(name);
     setInput(name);
     console.log(location);
     setSearch(false);
-    return location;
   };
 
   return (
