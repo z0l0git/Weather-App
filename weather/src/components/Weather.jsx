@@ -2,11 +2,17 @@ import { DateLocation } from "@/components/DateLocation";
 import { IconRow } from "@/components/IconRow";
 import { Celcius } from "@/components/Celcius";
 import { useState } from "react";
+// import { SearchBar } from "@/components/SearchBar";
 
 import Image from "next/image";
 
 export const Weather = (props) => {
-  const { bg = "#F3F4F6", imgSrc = "", check = true } = props;
+  const {
+    bg = "#F3F4F6",
+    imgSrc = "",
+    check = true,
+    location = "Ulaanbaatar",
+  } = props;
   const dStyle = { backgroundColor: `${bg}` };
   const nStyle = {
     backgroundColor: `${bg}`,
@@ -23,7 +29,7 @@ export const Weather = (props) => {
   const fetchData = async () => {
     const hour = new Date().getHours();
     const api_key = "7c91776fb1267161889e298c3e7ceb4b";
-    const url = `https://api.openweathermap.org/data/2.5/weather?q=Ulaanbaatar&lang=en&units=Metric&appid=${api_key}`;
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&lang=en&units=Metric&appid=${api_key}`;
     const response = await fetch(url);
     const data = await response.json();
     const mainDay = data.weather[0].main;
@@ -32,8 +38,6 @@ export const Weather = (props) => {
 
     setTemp(check ? dtemp : ntemp);
     setMainDay(mainDay);
-    console.log(mainDay);
-    console.log(data);
   };
 
   return (
@@ -56,8 +60,10 @@ export const Weather = (props) => {
         <Image
           className="absolute z-10"
           src={imgSrc}
-          width={200}
-          height={200}
+          width={260}
+          height={260}
+          priority={true}
+          alt="weather icon"
         ></Image>
       </div>
       <Celcius dayCheck={check} cUnit={temp} dayState={mainDay} />

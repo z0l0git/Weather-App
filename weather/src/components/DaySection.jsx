@@ -4,7 +4,6 @@ import { Weather } from "@/components/Weather";
 export const DaySection = () => {
   return (
     <div className="flex flex-col justify-center items-end ">
-      <SearchBar />
       <Weather imgSrc="/sun.png" bg="#FFF" check={true} />
     </div>
   );
