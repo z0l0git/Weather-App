@@ -21,7 +21,7 @@ export const Celcius = (props) => {
             fetchData();
           }}
         >
-          {cUnit.toString().split(".")[0]}
+          {cUnit}
         </p>
       </div>
       <div>
