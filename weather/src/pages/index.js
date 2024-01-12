@@ -69,7 +69,7 @@ export default function Home() {
 
   return (
     <div
-      className="flex flex-col md:flex-row items-center justify-center h-fit md:h-fit bg-black font-manrope rounded-[50px] md:overflow-hidden"
+      className="flex flex-col md:flex-row items-center justify-center h-fit md:h-screen bg-black font-manrope rounded-[50px] md:overflow-hidden"
       style={manrope.style}
     >
       <div
@@ -89,7 +89,7 @@ export default function Home() {
           </div>
 
           {search && (
-            <div className="flex flex-col rounded-[20px] bg-[#FFF00] bg-white px-[24px] py-[16px] gap-[10px] w-[400px] mt-[10px] absolute z-20 top-[60px] h-fit">
+            <div className="flex flex-col rounded-[20px] bg-[#FFF00] bg-white px-[24px] py-[16px] gap-[10px] w-[400px] mt-[10px] absolute z-20 top-[60px] md:top-[190px] h-fit">
               {cities.length > 0 &&
                 cities.map((com, i) => {
                   return (
@@ -110,7 +110,11 @@ export default function Home() {
           )}
         </div>
 
-        <DaySection locate={location} dcel={tempd} day={day} />
+        <DaySection
+          locate={location}
+          dcel={tempd.toString().split(".")[0]}
+          day={day}
+        />
       </div>
       <div className="w-1/2 h-full bg-none md:bg-[#0F141E] flex items-center justify-center">
         <NightSection

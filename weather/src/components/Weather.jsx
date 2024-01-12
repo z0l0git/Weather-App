@@ -29,7 +29,7 @@ export const Weather = (props) => {
 
   return (
     <div
-      className={`flex flex-col items-center justify-start bg-[${bg}] rounded-[48px] p-[48px] w-[300px]`}
+      className={`flex flex-col items-center justify-start bg-[${bg}] rounded-[48px] p-[48px] w-fit`}
       style={check ? dStyle : nStyle}
     >
       <DateLocation location={location.split(",")[0]} Dcheck={check} />
